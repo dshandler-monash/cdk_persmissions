@@ -1,0 +1,91 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "ecr:GetRegistryPolicy",
+                "s3:*",
+                "ecr:CreateRepository",
+                "ecr:DescribeRegistry",
+                "ecr:DescribePullThroughCacheRules",
+                "cloudformation:*",
+                "ecr:GetAuthorizationToken",
+                "ecr:PutRegistryScanningConfiguration",
+                "ecr:CreatePullThroughCacheRule",
+                "ecr:DeletePullThroughCacheRule",
+                "ecr:PutRegistryPolicy",
+                "ecr:GetRegistryScanningConfiguration",
+                "iam:*",
+                "ecr:BatchImportUpstreamImage",
+                "sagemaker:*",
+                "ecr:DeleteRegistryPolicy",
+                "ecr:PutReplicationConfiguration"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchGetImage",
+                "ssm:GetParameter"
+            ],
+            "Resource": [
+                "arn:aws:ecr:*:879460987391:repository/*",
+                "arn:aws:ssm::*:parameter/cdk-bootstrap/*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor2",
+            "Effect": "Allow",
+            "Action": "ecr:*",
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor3",
+            "Effect": "Allow",
+            "Action": "*",
+            "Resource": "*",
+            "Condition": {
+                "ForAnyValue:StringEquals": {
+                    "aws:CalledVia": "cloudformation.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Sid": "VisualEditor4",
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:PassedToService": [
+                        "sagemaker.amazonaws.com"
+                    ]
+                }
+            }
+        },
+        {
+            "Sid": "VisualEditor5",
+            "Effect": "Allow",
+            "Action": [
+                "ecr:ListTagsForResource",
+                "ecr:ListImages",
+                "ecr:DescribeRepositories",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetLifecyclePolicy",
+                "ecr:DescribeImageScanFindings",
+                "ecr:GetLifecyclePolicyPreview",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage",
+                "ecr:DescribeImages",
+                "ecr:GetRepositoryPolicy"
+            ],
+            "Resource": [
+                "arn:aws:ecr:ap-southeast-2:*:repository/*"
+            ]
+        }
+    ]
+}
